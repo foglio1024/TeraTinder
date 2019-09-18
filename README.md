@@ -4,7 +4,7 @@ Optional module for TCC. It lets you swipe left/right on players around you. No 
 
 #### Installation
 
-Download the zip from Releases page and extract its contents to TCC folder [(https://github.com/Foglio1024/TeraTinder/releases/download/v1.0/TeraTinder.zip)[direct link]].
+Download the zip from Releases page and extract its contents to TCC folder [[direct link](https://github.com/Foglio1024/TeraTinder/releases/download/v1.0/TeraTinder.zip)].
 
 #### Usage
 
