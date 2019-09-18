@@ -1,0 +1,9 @@
+packages
+TeraTinder/bin
+TeraTinder/obj
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+.vs/
