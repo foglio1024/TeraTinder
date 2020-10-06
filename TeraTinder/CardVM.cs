@@ -8,11 +8,11 @@ namespace TeraTinder
         private bool _rated;
         public bool CardRated => _rated;
         public event Action Rated;
-        public uint PlayerId { get; set; }
-        public string Name { get; set; } = "";
-        public string Job { get; set; } = "";
-        public int Level { get; set; }
-        public int Distance { get; set; }
+        public uint PlayerId { get; }
+        public string Name { get; }
+        public string Job { get; set; }
+        public int Level { get; }
+        public int Distance { get; }
 
         public Race Race { get; set; }
 

@@ -25,55 +25,28 @@ namespace TeraTinder
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string gender = "";
-            string race = "";
-            switch ((Race)value)
+            if (!(value is Race r))
             {
-                case Race.HumanMale:
-                    gender = "male";
-                    race = "human";
-                    break;
-                case Race.HumanFemale:
-                    gender = "female";
-                    race = "human";
-                    break;
-                case Race.ElfMale:
-                    gender = "male";
-                    race = "elf";
-                    break;
-                case Race.ElfFemale:
-                    gender = "female";
-                    race = "elf";
-                    break;
-                case Race.AmanMale:
-                    gender = "male";
-                    race = "aman";
-                    break;
-                case Race.AmanFemale:
-                    gender = "female";
-                    race = "aman";
-                    break;
-                case Race.CastanicMale:
-                    gender = "male";
-                    race = "castanic";
-                    break;
-                case Race.CastanicFemale:
-                    gender = "female";
-                    race = "castanic";
-                    break;
-                case Race.Popori:
-                    gender = "male";
-                    race = "popori";
-                    break;
-                case Race.Elin:
-                    gender = "female";
-                    race = "popori";
-                    break;
-                case Race.Baraka:
-                    return Path.Combine(App.ResourcesPath,"images/paperdoll/baraka.png");
+                return null;
             }
 
-                    return Path.Combine(App.ResourcesPath, $"images/paperdoll/{race}_{gender}.png");
+            var filename = r switch
+            {
+                Race.HumanMale => "human_male",
+                Race.HumanFemale => "human_female",
+                Race.ElfMale => "elf_male",
+                Race.ElfFemale => "elf_female",
+                Race.AmanMale => "aman_male",
+                Race.AmanFemale => "aman_female",
+                Race.CastanicMale => "castanic_male",
+                Race.CastanicFemale => "castanic_female",
+                Race.Popori => "popori_male",
+                Race.Elin => "popori_female",
+                Race.Baraka => "baraka",
+                _ => ""
+            };
+
+            return Path.Combine(App.ResourcesPath, $"images/paperdoll/{filename}.png");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

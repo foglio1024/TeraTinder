@@ -7,8 +7,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using TCC;
-using TCC.Parsing;
+using TCC.Analysis;
+using TCC.Data;
+using TCC.UI;
 using TCC.Utilities;
+using TCC.Utils;
 using TeraDataLite;
 using TeraPacketParser.Messages;
 using ModifierKeys = TCC.Data.ModifierKeys;
@@ -24,9 +27,9 @@ namespace TeraTinder
         {
             _win = new TinderWindow();
             KeyboardHook.Instance.RegisterCallback(new HotKey(Keys.T, ModifierKeys.Control | ModifierKeys.Alt), OnTinderHotkeyPressed);
-            PacketAnalyzer.NewProcessor.Hook<S_SPAWN_USER>(OnSpawnUser);
-            PacketAnalyzer.NewProcessor.Hook<S_LOAD_TOPO>(p => Clear());
-            PacketAnalyzer.NewProcessor.Hook<S_RETURN_TO_LOBBY>(p => Clear());
+            PacketAnalyzer.Processor.Hook<S_SPAWN_USER>(OnSpawnUser);
+            PacketAnalyzer.Processor.Hook<S_LOAD_TOPO>(p => Clear());
+            PacketAnalyzer.Processor.Hook<S_RETURN_TO_LOBBY>(p => Clear());
         }
 
         private static void Clear()
@@ -39,7 +42,7 @@ namespace TeraTinder
             _win.Dispatcher.BeginInvoke(new Action(() =>
             {
                 _win.VM.AddMatch(new CardVM(p.Name, $"{p.GuildRank} of {p.GuildName}", p.Level,
-                    App.Random.Next(10, 1000), TccUtils.RaceFromTemplateId(p.TemplateId), p.PlayerId));
+                    App.Random.Next(10, 1000), TccUtils.RaceFromTemplateId((int)p.TemplateId), p.PlayerId));
             }));
         }
 
@@ -48,6 +51,7 @@ namespace TeraTinder
             _win.Show();
         }
     }
+
     public partial class TinderWindow 
     {
         public MainVM VM { get; }
